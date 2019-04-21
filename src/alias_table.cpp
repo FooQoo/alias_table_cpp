@@ -1,4 +1,5 @@
 #include "alias_table.h"
+#include "rn_gen.h"
 #include <random>
 #include <vector>
 #include <numeric>
@@ -9,12 +10,16 @@ using namespace std;
 
 Alias_table::Alias_table(vector<int> input_table)
 {
-    int n = input_table.size();
-    int sum = accumulate(input_table.begin(), input_table.end(), 0);
     vector<double> smaller;
     vector<double> larger;
+
+    int n = input_table.size();
+    int sum = accumulate(input_table.begin(), input_table.end(), 0);
+
+    Rn_gen rn_gen(n);
+    this->rn_gen = rn_gen;
     
-    // step 1 and 2
+    // step 1 - 2
     for(int i=0; i<n; i++){
         double vk = (double)input_table[i]/sum*n;
         a.emplace_back(0);
@@ -49,39 +54,27 @@ Alias_table::~Alias_table()
 
 int Alias_table::draw()
 {
-    int n = v.size();
-    // 乱数部分 {}:一様初期化?
-    mt19937 mt;
-    mt.seed(0);
-    uniform_int_distribution<int> int_dist(0,n-1);
-    uniform_real_distribution<> real_dist(0.0, 1.0);
-    int k = int_dist(mt);
+    int k = this->rn_gen.get_int();
 
-    if (real_dist(mt)<v[k]){
+    if (this->rn_gen.get_real()<v[k]){
         return k;
     } else {
-        return a[k];
+        return this->a[k];
     }
 }
 
 map<int, int> Alias_table::draw_n(int num_samples)
 {
-    int n = v.size();
-    // 乱数部分 {}:一様初期化?
-    mt19937 mt;
-    mt.seed(0);
-    uniform_int_distribution<int> int_dist(0,n-1);
-    uniform_real_distribution<> real_dist(0.0, 1.0);
     map<int, int> counter;
     int s, k;
 
     for(int i=0; i<num_samples; i++){
-        k = int_dist(mt);
+        k = this->rn_gen.get_int();
 
-        if (real_dist(mt)<v[k]){
+        if (this->rn_gen.get_real()<v[k]){
             s = k;
         } else {
-            s = a[k];
+            s = this->a[k];
         }
 
         if (counter.count(s) == 0){
