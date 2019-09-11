@@ -1,5 +1,5 @@
-#include "alias_table.h"
-#include "rn_gen.h"
+#include "alias_table.hpp"
+#include "rn_gen.hpp"
 #include <random>
 #include <vector>
 #include <numeric>

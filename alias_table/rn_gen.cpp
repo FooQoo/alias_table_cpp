@@ -1,4 +1,4 @@
-#include "rn_gen.h"
+#include "rn_gen.hpp"
 #include <random>
 
 using namespace std;

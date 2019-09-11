@@ -1,7 +1,7 @@
 #include <iostream>
 #include <random>
 #include <vector>
-#include "alias_table.h"
+#include "alias_table.hpp"
 #include <map>
 
 using namespace std;

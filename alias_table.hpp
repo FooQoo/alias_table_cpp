@@ -1,7 +1,7 @@
 #ifndef _ALIAS_TABLE_H_
 #define _ALIAS_TABLE_H_
 
-#include "rn_gen.h"
+#include "rn_gen.hpp"
 #include <random>
 #include <vector>
 #include <map>
