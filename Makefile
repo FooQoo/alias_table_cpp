@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named TestAliasTable
+# Target rules for targets named testAliasTable.out
 
 # Build rule for target.
-TestAliasTable: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 TestAliasTable
-.PHONY : TestAliasTable
+testAliasTable.out: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testAliasTable.out
+.PHONY : testAliasTable.out
 
 # fast build rule for target.
-TestAliasTable/fast:
-	$(MAKE) -f CMakeFiles/TestAliasTable.dir/build.make CMakeFiles/TestAliasTable.dir/build
-.PHONY : TestAliasTable/fast
+testAliasTable.out/fast:
+	$(MAKE) -f CMakeFiles/testAliasTable.out.dir/build.make CMakeFiles/testAliasTable.out.dir/build
+.PHONY : testAliasTable.out/fast
 
 #=============================================================================
 # Target rules for targets named AliasTable
@@ -142,7 +142,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/TestAliasTable.dir/build.make CMakeFiles/TestAliasTable.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/testAliasTable.out.dir/build.make CMakeFiles/testAliasTable.out.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -151,7 +151,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/TestAliasTable.dir/build.make CMakeFiles/TestAliasTable.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/testAliasTable.out.dir/build.make CMakeFiles/testAliasTable.out.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -160,7 +160,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/TestAliasTable.dir/build.make CMakeFiles/TestAliasTable.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/testAliasTable.out.dir/build.make CMakeFiles/testAliasTable.out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -171,7 +171,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... TestAliasTable"
+	@echo "... testAliasTable.out"
 	@echo "... AliasTable"
 	@echo "... main.o"
 	@echo "... main.i"

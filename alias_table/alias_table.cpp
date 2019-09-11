@@ -1,5 +1,4 @@
 #include "alias_table.hpp"
-#include "rn_gen.hpp"
 #include <random>
 #include <vector>
 #include <numeric>
@@ -16,8 +15,11 @@ Alias_table::Alias_table(vector<int> input_table)
     int n = input_table.size();
     int sum = accumulate(input_table.begin(), input_table.end(), 0);
 
-    Rn_gen rn_gen(n);
-    this->rn_gen = rn_gen;
+    this->mt.seed(0);
+    uniform_int_distribution<> int_dist(0,n-1);
+    uniform_real_distribution<> real_dist(0.0, 1.0);
+    this->uid = int_dist;
+    this->rid = real_dist;
     
     // step 1 - 2
     for(int i=0; i<n; i++){
@@ -54,9 +56,9 @@ Alias_table::~Alias_table()
 
 int Alias_table::draw()
 {
-    int k = this->rn_gen.get_int();
+    int k = this->uid(this->mt);
 
-    if (this->rn_gen.get_real()<v[k]){
+    if (this->rid(this->mt)<v[k]){
         return k;
     } else {
         return this->a[k];
@@ -69,9 +71,9 @@ map<int, int> Alias_table::draw_n(int num_samples)
     int s, k;
 
     for(int i=0; i<num_samples; i++){
-        k = this->rn_gen.get_int();
+        k = this->uid(this->mt);
 
-        if (this->rn_gen.get_real()<v[k]){
+        if (this->rid(this->mt)<v[k]){
             s = k;
         } else {
             s = this->a[k];
